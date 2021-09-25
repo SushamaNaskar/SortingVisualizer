@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting visualizer</title>
+    <style>
+.bar{
+    width:30px;
+    position: absolute;
+    left:auto;
+    bottom:0;
+    background-color: blue;
+    
+}
+
+    </style>
+</head>
+<body>
+    <button onclick="generate()">generate new array</button>
+    <button onclick="selectionSort()">selection Sort</button>
+    <button onclick="quickSort(0,19)">quick Sort</button>
+    <button onclick="heapSort(20)">heap Sort</button>
+    <div class="bar_container"></div>
+    <script>
+       const container=document.querySelector(".bar_container");
+       function generatebars(){
+           for(let i=0;i<20;i++){
+               //create div with bar class
+               const bar=document.createElement("div");
+   
+            bar.className="bar";
+               //give random height to each bar
+               const value=Math.floor(Math.random()*100)+20;
+               bar.style.height=`${value*3}px`;
+               //position the bars horizontaly
+               bar.style.transform=`translate(${i*40}px)`;
+
+               //add lebel to all the bar
+              bar.innerHTML=value;
+               container.appendChild(bar);
+
+           }
+       }
+//selection sort
+      async function selectionSort(){
+           let i,j,min_idx;
+           let bars=document.querySelectorAll(".bar");
+           let n=bars.length;
+           for(i=0;i<n-1;i++){
+               min_idx=i;        //pretend i has the min val
+               bars[i].style.backgroundColor="green";    
+               for(j=i+1;j<n;j++){                      //find the value lower than i
+                bars[j].style.backgroundColor="pink";
+                   await new Promise((resolve)=>
+                   setTimeout(()=>{
+                       resolve();
+                   },100)
+                   );
+                   var min_val=parseInt(bars[min_idx].innerHTML);   //minimum value
+                   var curr_val=parseInt(bars[j].innerHTML);        //current index
+
+                   if(min_val>curr_val){    //compare
+                       if(min_val!==i)
+                       {
+                        min_idx=j;
+                        bars[min_idx].style.backgroundColor="red";
+                       }
+                       
+                    }
+                else{
+                       bars[j].style.backgroundColor="yellow";
+                   }
+                 
+
+               }
+
+               //swap
+               var m_height= bars[min_idx].style.height;
+                var m_val = bars[min_idx].innerText;
+                 bars[min_idx].style.height = bars[i].style.height;
+                 bars[min_idx].innerText = bars[i].innerText;
+                 bars[i].style.height = m_height;
+                bars[i].innerText = m_val;
+
+                await new Promise((resolve)=>
+                   setTimeout(()=>{
+                       resolve();
+                   },100)
+                   );
+           }
+ 
+     bars[min_idx].style.backgroundColor ="green";
+     bars[i].style.backgroundColor ="green";
+
+       }
+//quicksort
+ async function partition(l,r){
+    let bars=document.querySelectorAll(".bar");
+    let pi=parseInt(bars[r].innerHTML);
+    
+    bars[r].style.backgroundColor="red";
+    let i=l-1;       //i will point to the last number which is less then pi
+  
+   
+    for(let j=l;j<r;j++){
+        bars[j].style.backgroundColor="yellow";
+        await new Promise((resolve)=>
+                   setTimeout(()=>{
+                       resolve();
+                   },300)
+                   );
+        if(parseInt(bars[j].innerHTML)<pi){
+            i=i+1;
+            
+            bars[j].style.backgroundColor="pink";
+            // swap(i,j);
+            var m_height= bars[i].style.height;
+                var m_val = bars[i].innerText;
+                 bars[i].style.height = bars[j].style.height;
+                 bars[i].innerText = bars[j].innerText;
+                 bars[j].style.height = m_height;
+                bars[j].innerText = m_val;
+
+                await new Promise((resolve)=>
+                   setTimeout(()=>{
+                       resolve();
+                   },300)
+                   );
+           
+        }
+        bars[j].style.backgroundColor="green";
+    }
+    // swap(i+1,r);    //place the pi at its corrct position
+  
+    bars[i+1].style.backgroundColor="gray";
+    var m_height= bars[r].style.height;
+                var m_val = bars[r].innerText;
+                 bars[r].style.height = bars[i+1].style.height;
+                 bars[r].innerText = bars[i+1].innerText;
+                 bars[i+1].style.height = m_height;
+                bars[i+1].innerText = m_val;
+
+                await new Promise((resolve)=>
+                   setTimeout(()=>{
+                       resolve();
+                   },300)
+                   );
+                   bars[i+1].style.backgroundColor="green";
+                   bars[r].style.backgroundColor="green";
+       
+    return i+1;
+}
+      async function quickSort(l,r){
+  
+        if(l<r){
+       var pi=await partition(l,r);
+    
+       await quickSort(l,pi-1);
+       await quickSort(pi+1,r);
+    }
+      }
+
+//heap sort
+async function heapify(n,i){
+    let bars=document.querySelectorAll(".bar");
+let largest=i;
+let l=2*i+1;
+let r=2*i+2;
+
+bars[i].style.backgroundColor="red";
+if(l<n && Number(bars[largest].innerHTML)<Number(bars[l].innerHTML)){
+    largest=l;
+    bars[l].style.backgroundColor="green";
+}
+
+if(r<n && Number(bars[largest].innerHTML)<Number(bars[r].innerHTML)){
+    largest=r;
+    bars[r].style.backgroundColor="yellow";
+}
+if(largest!=i){
+    var m_height= bars[i].style.height;
+                var m_val = bars[i].innerText;
+                 bars[i].style.height = bars[largest].style.height;
+                 bars[i].innerText = bars[largest].innerText;
+                 bars[largest].style.height = m_height;
+                bars[largest].innerText = m_val;
+                await new Promise((resolve)=>
+                   setTimeout(()=>{
+                       resolve();
+                   },300)
+                   );
+                   bars[largest].style.backgroundColor="red";
+   await heapify(n,largest);
+}
+}
+async function heapSort(n){
+
+    let bars=document.querySelectorAll(".bar");
+   
+
+    for(let i=Math.floor(n/2)-1;i>=0;i--){
+        bars[i].style.backgroundColor="red";
+ await heapify(n,i);
+    }
+// // One by one extract an element from heap 
+for (let i = n - 1; i > 0; i--) { 
+    bars[i].style.backgroundColor="red";
+    let temp1 = bars[i].style.height; 
+    let temp2 = bars[i].innerHTML; 
+    bars[i].style.height = bars[0].style.height; 
+    bars[i].innerHTML = bars[0].innerHTML; 
+    bars[0].style.height = temp1; 
+    bars[0].innerHTML = temp2; 
+
+  
+    await new Promise((resolve) => 
+      setTimeout(() => { 
+        resolve(); 
+      }, 300) 
+    ); 
+  
+//     // Call max Heapify on the reduced heap 
+    await heapify(i, 0); 
+  }
+    
+}
+
+
+
+  
+ 
+//generate new array
+       function generate(){
+           window.location.reload();
+       }
+       generatebars();
+        
+    </script>
+
+</body>
+<script src="SelectionSort.js"></script>
+</html>
