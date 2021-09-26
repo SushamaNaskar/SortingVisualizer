@@ -32,7 +32,7 @@ if(largest!=i){
    await heapify(n,largest);
 }
 }
-async function heapSort(n){
+async function hSort(n){
 
     let bars=document.querySelectorAll(".bar");
    
@@ -62,4 +62,10 @@ for (let i = n - 1; i > 0; i--) {
     await heapify(i, 0); 
   }
     
+}
+ 
+function heapSort(){
+    let bar=document.querySelectorAll(".bar");
+    let n=bar.length;
+    hSort(n);
 }

@@ -56,12 +56,17 @@ async function partition(l,r){
        
     return i+1;
 }
-      async function quickSort(l,r){
+      async function qSort(l,r){
   
         if(l<r){
        var pi=await partition(l,r);
     
-       await quickSort(l,pi-1);
-       await quickSort(pi+1,r);
+       await qSort(l,pi-1);
+       await qSort(pi+1,r);
     }
       }
+ function quickSort(){
+     let bar=document.querySelectorAll(".bar");
+     let n=bar.length;
+     qSort(0,n-1);
+ }
