@@ -16,7 +16,7 @@ header {
 
 .sort_button,
 .footer_button {
-    
+    padding-left: 2%;
     position: relative;
     margin: auto;
     max-width: 100%;
@@ -50,7 +50,7 @@ header {
 
 
 .footer_button div {
-    padding-left: auto;
+    
 background-color: red;
     display: inline-block;
     width: 49%;
