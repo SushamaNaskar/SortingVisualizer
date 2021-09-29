@@ -11,6 +11,7 @@ header {
     color: white;
     font-size: xx-large;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    padding-top: 2vh;
 }
 
 .sort_button,
