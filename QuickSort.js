@@ -4,21 +4,21 @@ async function partition(l,r){
     let bars=document.querySelectorAll(".bar");
     let pi=parseInt(bars[r].innerHTML);
     
-    bars[r].style.backgroundColor="red";
+    bars[r].style.backgroundColor="#ff3a22";//red
     let i=l-1;       //i will point to the last number which is less then pi
   
    
     for(let j=l;j<r;j++){
-        bars[j].style.backgroundColor="yellow";
+        bars[j].style.backgroundColor="#ffde22"; //yellow
         await new Promise((resolve)=>
                    setTimeout(()=>{
                        resolve();
-                   },300)
+                   },speed)
                    );
         if(parseInt(bars[j].innerHTML)<pi){
             i=i+1;
             
-            bars[j].style.backgroundColor="pink";
+            bars[j].style.backgroundColor="#8076a3"; //purple
             // swap(i,j);
             var m_height= bars[i].style.height;
                 var m_val = bars[i].innerText;
@@ -30,11 +30,11 @@ async function partition(l,r){
                 await new Promise((resolve)=>
                    setTimeout(()=>{
                        resolve();
-                   },300)
+                   },speed)
                    );
            
         }
-        bars[j].style.backgroundColor="green";
+        bars[j].style.backgroundColor=" #9DC88D"; //green
     }
     // swap(i+1,r);    //place the pi at its corrct position
   
@@ -49,10 +49,10 @@ async function partition(l,r){
                 await new Promise((resolve)=>
                    setTimeout(()=>{
                        resolve();
-                   },300)
+                   },speed)
                    );
-                   bars[i+1].style.backgroundColor="green";
-                   bars[r].style.backgroundColor="green";
+                   bars[i+1].style.backgroundColor=" #9DC88D"; //green
+                   bars[r].style.backgroundColor=" #9DC88D";   //green
        
     return i+1;
 }

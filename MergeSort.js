@@ -8,12 +8,12 @@ async function merge(l,mid,r){
 
     var b=new Array(n2);
     for(let i=0;i<n1;i++){
-        bar[l+i].style.backgroundColor="yellow";
+        bar[l+i].style.backgroundColor="#8076a3";  //purple
         a[i]=parseInt(bar[l+i].innerHTML);
     }
     
     for(let i=0;i<n2;i++){
-        bar[mid+1+i].style.backgroundColor="yellow";
+        bar[mid+1+i].style.backgroundColor="#8076a3"; //purple
         b[i]=parseInt(bar[mid+1+i].innerHTML);
     }
     let i=0;
@@ -23,58 +23,58 @@ async function merge(l,mid,r){
         await new Promise((resolve)=>
         setTimeout(()=>{
             resolve();
-        },100)
+        },speed)
         );
         if(a[i]<b[j]){
-            bar[k].style.backgroundColor="red";
+            bar[k].style.backgroundColor="#ffde22";//yellow
             await new Promise((resolve)=>
             setTimeout(()=>{
                 resolve();
-            },100)
+            },speed)
             );
          bar[k].innerHTML=a[i];
          bar[k].style.height=`${a[i]*3}px`;
-         bar[k].style.backgroundColor="green";
+         bar[k].style.backgroundColor=" #9DC88D";//green
          k++;
             i++;
         }else{
-            bar[k].style.backgroundColor="red";
+            bar[k].style.backgroundColor="#ffde22";//yellow
             await new Promise((resolve)=>
             setTimeout(()=>{
                 resolve();
-            },100)
+            },speed)
             );
             bar[k].innerHTML=b[j];
             bar[k].style.height=`${b[j]*3}px`;
-            bar[k].style.backgroundColor="green";
+            bar[k].style.backgroundColor=" #9DC88D";//green
             k++;
             j++;
         }
        
     }
      while(i<n1){
-        bar[k].style.backgroundColor="red";
+        bar[k].style.backgroundColor="#8076a3";//purple
         await new Promise((resolve)=>
         setTimeout(()=>{
             resolve();
-        },100)
+        },speed)
         );
         bar[k].innerHTML=a[i];
         bar[k].style.height=`${a[i]*3}px`;
-        bar[k].style.backgroundColor="green";
+        bar[k].style.backgroundColor=" #9DC88D";//green
             k++;
             i++;
         }
          while(j<n2){
-            bar[k].style.backgroundColor="red";
+            bar[k].style.backgroundColor="#ffde22";//yellow
             await new Promise((resolve)=>
             setTimeout(()=>{
                 resolve();
-            },100)
+            },speed)
             );
             bar[k].innerHTML=b[j];
             bar[k].style.height=`${b[j]*3}px`;
-            bar[k].style.backgroundColor="green";
+            bar[k].style.backgroundColor=" #9DC88D";  //green
             k++;
             j++;
         }
@@ -93,8 +93,11 @@ async function msort(l, r){
 }
 
  async function mergeSort(){
-
+     
+             
+    
 let bar=document.querySelectorAll(".bar");
-   msort(0,19);
+let n=bar.length-1;
+   msort(0,n);
 
 }

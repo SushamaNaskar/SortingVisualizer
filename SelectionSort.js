@@ -1,18 +1,20 @@
 console.log("selection sort");
+
 //selection sort
 async function selectionSort(){
+    
     let i,j,min_idx;
     let bars=document.querySelectorAll(".bar");
     let n=bars.length;
     for(i=0;i<n-1;i++){
         min_idx=i;        //pretend i has the min val
-        bars[i].style.backgroundColor="green";    
+        bars[i].style.backgroundColor="#9DC88D";  //green  
         for(j=i+1;j<n;j++){                      //find the value lower than i
-         bars[j].style.backgroundColor="pink";
+         bars[j].style.backgroundColor="#ffde22";  //Purple
             await new Promise((resolve)=>
             setTimeout(()=>{
                 resolve();
-            },100)
+            },speed)
             );
             var min_val=parseInt(bars[min_idx].innerHTML);   //minimum value
             var curr_val=parseInt(bars[j].innerHTML);        //current index
@@ -21,12 +23,12 @@ async function selectionSort(){
                 if(min_val!==i)
                 {
                  min_idx=j;
-                 bars[min_idx].style.backgroundColor="red";
+                 bars[min_idx].style.backgroundColor="#ff3a22"; //red
                 }
                 
              }
          else{
-                bars[j].style.backgroundColor="yellow";
+                bars[j].style.backgroundColor="#8076a3"; //yellow
             }
           
 
@@ -35,6 +37,7 @@ async function selectionSort(){
 
 
              //swap
+             
              var m_height= bars[min_idx].style.height;
              var m_val = bars[min_idx].innerText;
               bars[min_idx].style.height = bars[i].style.height;
@@ -45,11 +48,12 @@ async function selectionSort(){
              await new Promise((resolve)=>
                 setTimeout(()=>{
                     resolve();
-                },100)
+                },speed)
                 );
         }
 
-  bars[min_idx].style.backgroundColor ="green";
-  bars[i].style.backgroundColor ="green";
-
+  bars[min_idx].style.backgroundColor =" #9DC88D";  //green
+  bars[i].style.backgroundColor ="#9DC88D";        //green
+  
     }
+    

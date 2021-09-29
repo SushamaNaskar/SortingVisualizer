@@ -1,64 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sorting visualizer</title>
-    <style>
-.bar{
-    width:30px;
-    position: absolute;
-    left:auto;
-    bottom:0;
-    background-color: blue;
-    
-}
-
-    </style>
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+
 <body>
-    <button onclick="generate()">generate new array</button>
-    <button onclick="selectionSort()">selection Sort</button>
-    <button onclick="quickSort()">quick Sort</button>
-    <button onclick="heapSort()">heap Sort</button>
-    <button onclick="mergeSort()">Merge Sort</button>
+    <header>Sorting Visualizer </header>
+
+
+    <div class="sort_button">
+        <button onclick="generate()">generate new array</button>
+        <button onclick="selectionSort()">selection Sort</button>
+        <button onclick="quickSort()">quick Sort</button>
+        <button onclick="heapSort()">heap Sort</button>
+        <button onclick="mergeSort()">Merge Sort</button>
+    </div>
     <div class="bar_container"></div>
+
+    <div class="footer_button">
+        <div>
+            <lable for="barRange">Array Size</lable>
+            <input type="range" min="4" max="100" value="19" class="slider" id="barRange" />
+        </div>
+        <div>
+            <lable for="speed">Sorting speed</lable>
+            <input type="range" min="1" max="10" value="3" class="slider" id="speed" />
+        </div>
+    </div>
     <script>
-       const container=document.querySelector(".bar_container");
-       function generatebars(){
-           for(let i=0;i<20;i++){
-               //create div with bar class
-               const bar=document.createElement("div");
-   
-            bar.className="bar";
-               //give random height to each bar
-               const value=Math.floor(Math.random()*100)+20;
-               bar.style.height=`${value*3}px`;
-               //position the bars horizontaly
-               bar.style.transform=`translate(${i*40}px)`;
+        const container = document.querySelector(".bar_container");
+        //manage bar number 
+        const Slider = document.getElementById("barRange");
+        let bar_number = Slider.value;
 
-               //add lebel to all the bar
-              bar.innerHTML=value;
-               container.appendChild(bar);
+        Slider.oninput = function () {
+            bar_number = parseInt(this.value);
+            container.innerHTML = ' ';
+            generatebars();
+        }
+        //manage speed
+        const barspeed = document.getElementById("speed");
+        let speed = 250;
+        console.log(speed);
+        barspeed.oninput = function () {
+            let n= parseInt(this.value);
+            console.log(speed);
+            switch (n) {
+                case 1:
+                case 2:
+                case 3: speed = 500;
+                          break;
+                case 4:
+                case 5:
+                case 6: speed = 250;
+                         break;
+                case 7:
+                case 8:
+                case 9: speed = 170;
+                         break;
+                case 10: speed = 100;
+                         break;
+            }
+            console.log(speed);
+            // if(speed<2){
+            //     speed=500;
+            // }else if(speed<4){
+            //     speed=350;
+            // }else if(speed<6){
+            //     speed=250;
+            // }else if(speed<8){
+            //     speed=170
+            // }else{
+            //     speed=100;
+            // }
 
-           }
-       }
+          
+        }
+        function generatebars() {
 
+            for (let i = 0; i < bar_number; i++) {
+                //create div with bar class
+                const bar = document.createElement("div");
+                bar.className = "bar";
+                //give width according to the number of bars 
+                let value1 = container.offsetWidth;
+                let n = bar_number;
+                let k = Math.floor(value1 / (n * 2));
+                bar.style.width = `${k}px`;
+                //give random height to each bar
+                const value = Math.floor(Math.random() * 100) + 20;
+                bar.style.height = `${value * 3}px`;
+                bar.innerHTML = value;
+                //append with bar_container div
+                container.appendChild(bar);
 
-  
+            }
+        }
+        //generate new array
+        function generate() {
+            window.location.reload();
+        }
+        generatebars();
 
-
-
-
-  
- 
-//generate new array
-       function generate(){
-           window.location.reload();
-       }
-       generatebars();
-       
     </script>
 
 </body>
