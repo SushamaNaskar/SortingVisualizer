@@ -30,8 +30,8 @@ header {
     color: white;
     background-color: #bd8c7d;
     border: none;
-    min-height: 9vh;
-    max-height: 9vh;
+    min-height: 7vh;
+    max-height: 7vh;
     position: relative;
     z-index: 1;
     display: inline-block;
