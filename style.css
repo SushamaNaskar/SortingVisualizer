@@ -14,7 +14,7 @@ header {
 
 .sort_button,
 .footer_button {
-    clear: both;
+    
     position: relative;
     margin: auto;
     max-width: 100%;
