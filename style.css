@@ -14,18 +14,19 @@ header {
 
 .sort_button,
 .footer_button {
+    clear: both;
     position: relative;
     margin: auto;
     max-width: 100%;
     min-width: 70%;
     height: 10vh;
     background-color: #bd8c7d;
-clear: both;
+
 
 }
 
 .sort_button button {
-    width: 17%;
+    width: 16%;
     text-transform: uppercase;
     color: white;
     background-color: #bd8c7d;
@@ -38,11 +39,11 @@ clear: both;
 }
 
 .sort_button button:nth-child(1) {
-    width: 20%;
+    width: 23%;
 }
 
 .sort_button button:nth-child(2) {
-    width: 20%;
+    width: 23%;
 }
 
 
