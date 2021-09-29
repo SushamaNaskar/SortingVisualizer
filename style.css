@@ -25,7 +25,7 @@ header {
 }
 
 .sort_button button {
-    width: 16%;
+    width: 14%;
     text-transform: uppercase;
     color: white;
     background-color: #bd8c7d;
@@ -38,7 +38,7 @@ header {
 }
 
 .sort_button button:nth-child(1) {
-    width: 23%;
+    width: 25%;
 }
 
 .sort_button button:nth-child(2) {
